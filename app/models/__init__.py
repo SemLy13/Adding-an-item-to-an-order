@@ -5,7 +5,7 @@ class Base(DeclarativeBase):
     pass
 
 
-from app.models.organization import Organization, OrganizationPhone  # noqa
-from app.models.building import Building  # noqa
-from app.models.activity import Activity  # noqa
-from app.models.associations import organization_activities  # noqa
+from .category import Category  # noqa:
+from .nomenclature import Nomenclature  # noqa:
+from .client import Client  # noqa:
+from .orders import Order, OrderItem  # noqa:
