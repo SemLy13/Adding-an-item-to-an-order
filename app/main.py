@@ -3,7 +3,7 @@ from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.core.security import verify_api_key
-from app.routers import health_router, organization_router, building_router
+from app.routers import health_router, orders_router
 
 # Базовая конфигурация логирования
 logging.basicConfig(
@@ -36,18 +36,7 @@ app.add_middleware(
 )
 
 app.include_router(health_router, prefix="/api/v1", tags=["health"])
-app.include_router(
-    organization_router,
-    prefix="/api/v1/organizations",
-    tags=["organizations"],
-    dependencies=[Depends(verify_api_key)]
-)
-app.include_router(
-    building_router,
-    prefix="/api/v1/buildings",
-    tags=["buildings"],
-    dependencies=[Depends(verify_api_key)]
-)
+app.include_router(orders_router, prefix="/api/v1/orders", tags=["orders"])
 
 
 @app.get("/")
