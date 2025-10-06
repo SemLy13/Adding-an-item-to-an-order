@@ -1,5 +1,7 @@
 # Adding-an-item-to-an-order
 
+## DB: ```https://dbdiagram.io/d/68e23ac4d2b621e422501cd1```
+
 ## Быстрый запуск
 
 ```bash
