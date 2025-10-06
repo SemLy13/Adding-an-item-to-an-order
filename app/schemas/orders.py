@@ -7,8 +7,10 @@ from pydantic import BaseModel, ConfigDict, Field
 
 class OrderItemBase(BaseModel):
     nomenclature_id: int
-    quantity: int = Field(ge=0, description="Количество должно быть >= 0")
-    price: Decimal = Field(ge=0, decimal_places=2, description="Цена должна быть >= 0")
+    quantity: int = Field(gt=0, description="Количество должно быть > 0")
+    price: Decimal = Field(
+        ge=0, decimal_places=2, description="Цена должна быть >= 0"
+    )
 
 
 class OrderItemCreate(OrderItemBase):

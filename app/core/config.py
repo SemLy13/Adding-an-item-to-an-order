@@ -4,9 +4,9 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "OrgFinder"
+    PROJECT_NAME: str = "Adding-an-item-to-an-order"
     VERSION: str = "1.0.0"
-    DESCRIPTION: str = "API для поиска организаций"
+    DESCRIPTION: str = "API для управления заказами и добавления товаров"
 
     DATABASE_URL: str = os.getenv(
         "DATABASE_URL",

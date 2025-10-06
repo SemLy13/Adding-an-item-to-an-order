@@ -16,7 +16,9 @@ class Category(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
-    parent_id: Mapped[Optional[int]] = mapped_column(ForeignKey("categories.id"), nullable=True)
+    parent_id: Mapped[Optional[int]] = mapped_column(
+        ForeignKey("categories.id"), nullable=True
+    )
 
     # relations
     parent: Mapped[Optional["Category"]] = relationship(
@@ -29,7 +31,9 @@ class Category(Base):
         single_parent=True,
     )
     nomenclatures: Mapped[List["Nomenclature"]] = relationship(
-        "Nomenclature", back_populates="category"
+        "Nomenclature",
+        back_populates="category",
+        foreign_keys="Nomenclature.category_id"
     )
 
     __table_args__ = (

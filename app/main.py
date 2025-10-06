@@ -19,7 +19,7 @@ app = FastAPI(
     redoc_url="/redoc",
     openapi_url="/openapi.json",
     contact={
-        "name": "OrgFinder API Support",
+        "name": "Adding-an-item-to-an-order API Support",
     },
     license_info={
         "name": "MIT",
@@ -41,4 +41,4 @@ app.include_router(orders_router, prefix="/api/v1/orders", tags=["orders"])
 
 @app.get("/")
 async def root():
-    return {"message": "OrgFinder API", "version": settings.VERSION}
+    return {"message": "Adding-an-item-to-an-order API", "version": settings.VERSION}

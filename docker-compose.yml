@@ -8,7 +8,7 @@ services:
     volumes:
       - .:/app
     environment:
-      DATABASE_URL: postgresql+asyncpg://orgfinder_user:orgfinder_pass@db:5432/orgfinder
+      DATABASE_URL: postgresql+asyncpg://order_user:order_pass@db:5432/order_db
       API_KEY: ${API_KEY}
       RELOAD: "true"
     depends_on:
@@ -29,15 +29,15 @@ services:
   db:
     image: postgres:15
     environment:
-      POSTGRES_DB: orgfinder
-      POSTGRES_USER: orgfinder_user
-      POSTGRES_PASSWORD: orgfinder_pass
+      POSTGRES_DB: order_db
+      POSTGRES_USER: order_user
+      POSTGRES_PASSWORD: order_pass
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U orgfinder_user -d orgfinder"]
+      test: ["CMD-SHELL", "pg_isready -U order_user -d order_db"]
       interval: 10s
       timeout: 5s
       retries: 5

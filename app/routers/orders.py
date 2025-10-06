@@ -5,11 +5,11 @@ from app.db.database import get_db
 from app.schemas.orders import OrderItem, OrderItemCreate, Order
 from app.services.order_service import (
     add_item_to_order,
-    remove_item_from_order,
-    update_order_total
+    remove_item_from_order
 )
 from app.models.orders import Order as OrderModel
 from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 
 router = APIRouter()
 
@@ -44,7 +44,9 @@ async def get_order(
 ):
     """Получает заказ с позициями."""
     order_result = await db.execute(
-        select(OrderModel).where(OrderModel.id == order_id)
+        select(OrderModel)
+        .options(selectinload(OrderModel.items))
+        .where(OrderModel.id == order_id)
     )
     order = order_result.scalar_one_or_none()
 
